@@ -11,7 +11,6 @@ const initialState: CounterState = {
 export const counterReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case TYPES.INCREASE_COUNT: {
-      console.log('increase')
       return {
         count: state.count + 1
       }

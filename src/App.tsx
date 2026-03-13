@@ -1,13 +1,14 @@
-import { decreaseCount, increaseCount } from './redux/Actions'
+import { decreaseCount, increaseCount } from './redux/actions'
 import { useDispatch, useSelector } from 'react-redux'
-import type { CounterState } from './redux/reducer'
+import type { RootState } from './redux/store'
+import Todos from './pages/Todos'
 
 function App() {
   const dispatch = useDispatch()
-  const count = useSelector((state: CounterState) => state.count)
+  const count = useSelector((state: RootState) => state.counter.count)
 
-  const handleIncrement = () => {
-    dispatch(increaseCount())
+  const handleIncrement = (data = 5) => {
+    dispatch(increaseCount(data))
   }
 
   const handleDecrement = () => {
@@ -20,10 +21,12 @@ function App() {
         <h1>Redux - Redux Toolkit</h1>
         <h4>Count: {count}</h4>
         <div className='flex gap-2'>
-          <button onClick={handleIncrement}>Increment</button>
-          <button onClick={handleDecrement}>Decrement</button>
+          <button onClick={() => handleIncrement()}>Increment</button>
+          <button onClick={() => handleDecrement()}>Decrement</button>
         </div>
       </div>
+      <hr className='my-4' />
+      <Todos />
     </div>
   )
 }
