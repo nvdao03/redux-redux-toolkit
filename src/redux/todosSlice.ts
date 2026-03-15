@@ -1,5 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 import type { TodoType } from '../types/todo.type'
+import { fetchUserById } from './thunk'
 
 export interface TodoState {
   todos: TodoType[]
@@ -25,6 +26,12 @@ export const todosSlice = createSlice({
       newState.todos = newState.todos.map((item: TodoType) => (item.id === id ? { ...item, ...todo } : item))
       return newState
     }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchUserById.fulfilled, (state, action) => {
+      console.log('state', state)
+      console.log('action', action)
+    })
   }
 })
 
