@@ -2,7 +2,7 @@ import type { TodoType } from '../types/todo.type'
 import { TYPES } from './types'
 
 export interface TodoState {
-  todos: []
+  todos: TodoType[]
 }
 
 const initialState: TodoState = {
