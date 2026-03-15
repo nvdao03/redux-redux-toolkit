@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../../redux/store'
 import type { TodoType } from '../../types/todo.type'
 import { useState } from 'react'
-import { addTodo, deleteTodo, updateTodo } from '../../redux/actions'
+import { addTodo, updateTodo, deleteTodo } from '../../redux/todosSlice'
 
 export default function Todos() {
   const todos = useSelector((state: RootState) => state.todos.todos)
@@ -15,12 +15,7 @@ export default function Todos() {
 
   const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    dispatch(
-      addTodo({
-        id: idTodo,
-        title: todoTitle
-      })
-    )
+    dispatch(addTodo({ id: idTodo, title: todoTitle }))
     setIdTodo((prev) => prev + 1)
     setTodoTitle('')
   }
